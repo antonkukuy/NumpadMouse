@@ -8,7 +8,8 @@ vk5A::send {vk4B}   ;z to k
 ;z::send {k}   ;z
 Return
 
-
+;It's commit
+;It's commit
 
 AppsKey::send {Space}
 +i:send {Up}

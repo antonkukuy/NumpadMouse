@@ -1,4 +1,4 @@
-
+/*
 #IfWinActive, ahk_exe chrome.exe
 vk53::send {vk55}   ;s to u
 ;s::send {u}   ;s
@@ -7,7 +7,7 @@ vk41::send {vk4A}   ;a to j
 vk5A::send {vk4B}   ;z to k
 ;z::send {k}   ;z
 Return
-
+*/
 ;It's commit
 ;It's commit
 

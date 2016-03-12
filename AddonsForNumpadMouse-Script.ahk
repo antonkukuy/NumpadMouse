@@ -12,7 +12,7 @@ Return
 ;It's commit
 
 AppsKey::send {Space}
-+i:send {Up}
++i::send {Up}
 +k::send {Down}
 +j::send {Left}
 +l::send {Right}

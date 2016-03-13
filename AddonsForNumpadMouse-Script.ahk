@@ -1,3 +1,6 @@
+GroupAdd, Games, ahk_exe ugol.exe              ; table shulte
+GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
+
 /*
 #IfWinActive, ahk_exe chrome.exe
 vk53::send {vk55}   ;s to u
@@ -93,6 +96,37 @@ MouseClick, left,  858,  599
 Sleep, 1300
 MouseClick, left,  850, 598
 Return
+
+
+If WinActivate ahk_exe ugol.exe
+{
+LControl::
+MouseClick, left,  1010,  730
+Sleep, 100
+MouseClick, left,  1166,  721
+Sleep, 100
+MouseMove, 683, 390
+Sleep, 100
+Return
+}
+
+#IfWinActive ahk_exe swf_player.exe
+vk20::send {vk20}   ;space to space
+LControl::
+MouseClick, left,  1010,  730
+Sleep, 100
+MouseClick, left,  1166,  721
+Sleep, 100
+MouseClick, left,  1166,  721
+Sleep, 100
+MouseMove, 683, 390
+Sleep, 100
+Return
+
+
+#IfWinActive
+
+
 ; Just send F3 at converting, long press for normal F3.
 
 /*

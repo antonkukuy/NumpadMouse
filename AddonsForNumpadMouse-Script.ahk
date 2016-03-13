@@ -98,8 +98,9 @@ MouseClick, left,  850, 598
 Return
 
 
-If WinActivate ahk_exe ugol.exe
-{
+;If WinActivate (ahk_exe ugol.exe)
+#IfWinActive ahk_exe ugol.exe
+
 LControl::
 MouseClick, left,  1010,  730
 Sleep, 100
@@ -108,8 +109,8 @@ Sleep, 100
 MouseMove, 683, 390
 Sleep, 100
 Return
-}
 
+#IfWinActive
 
 ; Just send F3 at converting, long press for normal F3.
 

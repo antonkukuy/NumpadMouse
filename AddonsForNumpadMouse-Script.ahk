@@ -1,19 +1,9 @@
 GroupAdd, Games, ahk_exe ugol.exe              ; table shulte
 GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
 
-/*
-#IfWinActive, ahk_exe chrome.exe
-vk53::send {vk55}   ;s to u
-;s::send {u}   ;s
-vk41::send {vk4A}   ;a to j
-;a::send {j}   ;a
-vk5A::send {vk4B}   ;z to k
-;z::send {k}   ;z
-Return
-*/
-;It's commit
-;It's commit
 
+RControl & '::Send {LCtrl down}{Tab}{LCtrl up}
+RControl & `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
 AppsKey::send {Space}
 +i::send {Up}
 +k::send {Down}
@@ -55,10 +45,8 @@ MouseClick, left,  861, 616
 Sleep, 1600
 MouseClick, left,  798, 663
 Sleep, 160
-
+Return
 ^y::                           ; YouTube playlist Speed 2x and full screen mode
-;mouseclick, left, 655, 486
-;sleep, 1600
 mouseclick, left,  793, 615
 sleep, 1600
 MouseClick, left,  803, 518
@@ -69,8 +57,6 @@ MouseClick, left,  861, 616
 Sleep, 1600
 MouseClick, left,  798, 663
 Sleep, 16000
-
-
 Return
 ^k::                           ; ; YouTube Full screen for extention Speed 2x with autoplay
 MouseClick, left,  823,  601
@@ -78,8 +64,6 @@ Sleep, 1300
 MouseClick, left,  795,  504
 Sleep, 1300
 MouseClick, left,  830,  552
-Sleep, 1300
-;MouseClick, left,  713,  601
 Sleep, 1300
 MouseClick, left,  858,  599
 Return
@@ -90,8 +74,6 @@ MouseClick, left,  795,  504
 Sleep, 1300
 MouseClick, left,  830,  552
 Sleep, 1300
-;MouseClick, left,  713,  601
-Sleep, 1300
 MouseClick, left,  858,  599
 Sleep, 1300
 MouseClick, left,  850, 598
@@ -100,7 +82,7 @@ Return
 
 ;If WinActivate (ahk_exe ugol.exe)
 #IfWinActive ahk_exe ugol.exe
-
+k::
 LControl::
 MouseClick, left,  1010,  730
 Sleep, 100
@@ -112,7 +94,6 @@ Return
 
 #IfWinActive
 
-; Just send F3 at converting, long press for normal F3.
 
 /*
 #IfWinActive, ahk_class TTOTAL_CMD

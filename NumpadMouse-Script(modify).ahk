@@ -119,11 +119,11 @@ Hotkey, *k, ButtonMiddleClick
 Hotkey, *NumpadClear, ButtonMiddleClickClear   
 Hotkey, *RControl, ButtonRightClick   
 Hotkey, *NumPadDel, ButtonRightClickDel   
-Hotkey, *h, ButtonX1Click   
-Hotkey, *n, ButtonX2Click   
+Hotkey, *`; , ButtonX1Click   
+Hotkey, *', ButtonX2Click   
 
-Hotkey, *', ButtonWheelUp
-Hotkey, *`;, ButtonWheelDown
+Hotkey, *n, ButtonWheelUp
+Hotkey, *h, ButtonWheelDown
 
 Hotkey, *i, ButtonUp
 Hotkey, *`, , ButtonDown
@@ -185,11 +185,11 @@ If ScrollLockState = D
     Hotkey, *`, , on
     Hotkey, *RControl, on
     Hotkey, *NumPadDel, on
+    Hotkey, *', on
+    Hotkey, *`; , on
+
     Hotkey, *h, on
     Hotkey, *n, on
-
-    Hotkey, *', on
-    Hotkey, *`;, on
 
     Hotkey, *i, on
     Hotkey, *k, on
@@ -230,11 +230,11 @@ else
     Hotkey, *k, off
     Hotkey, *RControl, off
     Hotkey, *NumPadDel, off
+    Hotkey, *', off
+    Hotkey, *`; , off
+
     Hotkey, *h, off
     Hotkey, *n, off
-
-    Hotkey, *', off
-    Hotkey, *`;, off
 
     Hotkey, *i, off
     Hotkey, *`,, off
@@ -762,9 +762,9 @@ If MouseWheelAccelerationSpeed >= 1
     }
 }
 
-If Button ='
+If Button =h
     MouseClick, wheelup,,, %MouseWheelCurrentSpeed%, 0, D
-else if Button =;
+else if Button =n
     MouseClick, wheeldown,,, %MouseWheelCurrentSpeed%, 0, D
 
 SetTimer, ButtonWheelAccelerationEnd, 100
@@ -788,4 +788,5 @@ return
 #Include, d:\KEYBOARD\NumpadMouse\AddonsForNumpadMouse-Script.ahk
 
 #IfWinActive
+
 

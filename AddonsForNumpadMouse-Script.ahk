@@ -2,8 +2,13 @@ GroupAdd, Games, ahk_exe ugol.exe              ; table shulte
 GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
 
 
+
+RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
+RControl & k::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
 RControl & '::Send {LCtrl down}{Tab}{LCtrl up}
 RControl & `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
+RControl & vk4F::WinMaximize, A    ; ^o  - max window
+RControl & vk4D::WinMinimize, A    ; ^m  - mix window
 AppsKey::send {Space}
 +i::send {Up}
 +k::send {Down}
@@ -58,7 +63,7 @@ Sleep, 1600
 MouseClick, left,  798, 663
 Sleep, 16000
 Return
-^k::                           ; ; YouTube Full screen for extention Speed 2x with autoplay
+LControl & k::                           ; ; YouTube Full screen for extention Speed 2x with autoplay
 MouseClick, left,  823,  601
 Sleep, 1300
 MouseClick, left,  795,  504

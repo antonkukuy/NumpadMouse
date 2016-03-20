@@ -1,4 +1,4 @@
-﻿
+
 /*
 o------------------------------------------------------------o
 |Using Keyboard Numpad as a Mouse                            |
@@ -158,9 +158,9 @@ Hotkey, !Numpad9, ButtonWheelMaxSpeedUp
 Hotkey, !Numpad3, ButtonWheelMaxSpeedDown
 
 
-
+ToolTipFont("s7", "Verdana")
 ToolTipColor("Red", "Blue")
-Tooltip, M, 1336, 757
+Tooltip, M, 0, 766
 Gosub, ~ScrollLock  ; Initialize based on current ScrollLock state.
 return
 
@@ -173,13 +173,15 @@ Suspend
 ;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
 If (A_IsSuspended)
 {
+ToolTipFont("s7", "Verdana")
 ToolTipColor("Black", "ffffff")
-Tooltip, M, 1336, 757
+Tooltip, M, 0, 766
 }
 else
 {
+ToolTipFont("s7", "Verdana")
 ToolTipColor("Red", "Blue")
-Tooltip, M, 1336, 757
+Tooltip, M, 0, 766
 }
 return
 

@@ -98,7 +98,7 @@ Return
 ;Pass "Default" for either parameter to restore it to its default. If both are default, the system visual style is used.
 
 ;Examples
-;ToolTipFont("s20", "Comic Sans MS")
+;ToolTipFont("s20", "Comic Sans MS")  s20 - set 20-points Comic Sans MS
 ;ToolTipColor("Red", "Blue")
 
 ToolTipFont(Options := "", Name := "", hwnd := "") {

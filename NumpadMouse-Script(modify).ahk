@@ -1,5 +1,4 @@
-﻿Process, Priority, , AboveNormal     ; Эта запись сообщает операционной системе уделить больше внимания к исполнению данных команд
-
+﻿
 /*
 o------------------------------------------------------------o
 |Using Keyboard Numpad as a Mouse                            |
@@ -69,10 +68,11 @@ o------------------------------------------------------------o
 ; by holding down ALT and sending a series of Numpad keystrokes.
 ; Hook hotkeys are smart enough to ignore such keystrokes.
 #UseHook
+Process, Priority, , AboveNormal     ; Эта запись сообщает операционной системе уделить больше внимания к исполнению данных команд
 
 MouseSpeed = 1
-MouseAccelerationSpeed = 5
-MouseMaxSpeed = 7
+MouseAccelerationSpeed = 29
+MouseMaxSpeed = 17
 
 ;Mouse wheel speed is also set on Control Panel. As that
 ;will affect the normal mouse behavior, the real speed of
@@ -159,6 +159,8 @@ Hotkey, !Numpad3, ButtonWheelMaxSpeedDown
 
 
 
+ToolTipColor("Red", "Blue")
+Tooltip, M, 1336, 757
 Gosub, ~ScrollLock  ; Initialize based on current ScrollLock state.
 return
 
@@ -166,9 +168,20 @@ return
 ;SetScrollLockState On
 
 ~` & F3::ExitApp 
-sc152::Suspend   ; CapsLock
-Return
-
+sc152::
+Suspend
+;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
+If (A_IsSuspended)
+{
+ToolTipColor("Black", "ffffff")
+Tooltip, M, 1336, 757
+}
+else
+{
+ToolTipColor("Red", "Blue")
+Tooltip, M, 1336, 757
+}
+return
 
 ;Key activation support
 

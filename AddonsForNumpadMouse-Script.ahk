@@ -5,8 +5,8 @@ GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
 
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
 RControl & k::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
-RControl & vk49 ::Send {HOME}     ; ^i  - head page
-RControl & vkBC ::Send {END}     ; ^,  - footer page
+~Space & vk48 ::Send {HOME}     ; space & h  - head page
+~Space & vk4E ::Send {END}     ; space & n  - footer page
 RControl & '::Send {LCtrl down}{Tab}{LCtrl up}
 RControl & `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
 RControl & vk4F::WinMaximize, A    ; ^o  - max window

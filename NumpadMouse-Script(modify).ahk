@@ -71,8 +71,8 @@ o------------------------------------------------------------o
 Process, Priority, , AboveNormal     ; Эта запись сообщает операционной системе уделить больше внимания к исполнению данных команд
 
 MouseSpeed = 1
-MouseAccelerationSpeed = 29
-MouseMaxSpeed = 17
+MouseAccelerationSpeed = 35
+MouseMaxSpeed = 20
 
 ;Mouse wheel speed is also set on Control Panel. As that
 ;will affect the normal mouse behavior, the real speed of
@@ -158,9 +158,9 @@ Hotkey, !Numpad9, ButtonWheelMaxSpeedUp
 Hotkey, !Numpad3, ButtonWheelMaxSpeedDown
 
 
-ToolTipFont("s7", "Verdana")
-ToolTipColor("Red", "Blue")
-Tooltip, M, 0, 766
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("M", 0, 766, 2,HFONT, "Red", "Black",,"S")
+
 Gosub, ~ScrollLock  ; Initialize based on current ScrollLock state.
 return
 
@@ -173,15 +173,13 @@ Suspend
 ;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
 If (A_IsSuspended)
 {
-ToolTipFont("s7", "Verdana")
-ToolTipColor("Black", "ffffff")
-Tooltip, M, 0, 766
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("M", 0, 766, 2,HFONT, "Black", "White",,"S")
 }
 else
 {
-ToolTipFont("s7", "Verdana")
-ToolTipColor("Red", "Blue")
-Tooltip, M, 0, 766
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("M", 0, 766, 2,HFONT, "Red", "Black",,"S")
 }
 return
 
@@ -801,6 +799,7 @@ ToolTip
 return
 
 #Include, d:\KEYBOARD\NumpadMouse\AddonsForNumpadMouse-Script.ahk
+#Include, d:\KEYBOARD\ToolTip\ToolTipEx.ahk
 
 #IfWinActive
 

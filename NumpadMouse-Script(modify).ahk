@@ -110,49 +110,84 @@ MouseCurrentSpeed = %MouseSpeed%
 MouseWheelCurrentAccelerationSpeed = 0
 MouseWheelCurrentSpeed = %MouseSpeed%
 
+btnLeftClick = *NumPad0
+btnLeftClickIns = >^Space
+btnLeftClickIns = >+Space
+btnLeftClickIns = !Space
+btnLeftClickIns = Space
+btnMiddleClick = *k
+btnMiddleClickClear = *NumpadClear
+btnRightClick = *RControl
+btnRightClickDel = *NumPadDel
+btnX1Click = *`; 
+btnX2Click = *'
+btnWheelUp = *n
+btnWheelDown = *h
+btnUp = *i
+btnDown = *`,
+btnLeft = *j
+btnRight = *l
+btnUpLeft = *u
+btnUpRight = *m
+btnDownLeft = *o
+btnDownRight = *.
+btnSpeedUp = Numpad8
+btnSpeedDown = Numpad2
+btnAccelerationSpeedUp = Numpad7
+btnAccelerationSpeedDown = Numpad1
+btnMaxSpeedUp = Numpad9
+btnMaxSpeedDown = Numpad3
+btnRotationAngleUp = Numpad6
+btnRotationAngleDown = Numpad4
+btnWheelSpeedUp = !Numpad8
+btnWheelSpeedDown = !Numpad2
+btnWheelAccelerationSpeedUp = !Numpad7
+btnWheelAccelerationSpeedDown = !Numpad1
+btnWheelMaxSpeedUp = !Numpad9
+btnWheelMaxSpeedDown = !Numpad3
 SetKeyDelay, -1
 SetMouseDelay, -1
-
-Hotkey, *NumPad0, ButtonLeftClick   
-Hotkey, >^Space, ButtonLeftClickIns   
-Hotkey, >+Space, ButtonLeftClickIns   
-Hotkey, !Space, ButtonLeftClickIns   
-Hotkey, Space, ButtonLeftClickIns   
-Hotkey, *k, ButtonMiddleClick   
-Hotkey, *NumpadClear, ButtonMiddleClickClear   
-Hotkey, *RControl, ButtonRightClick   
-Hotkey, *NumPadDel, ButtonRightClickDel   
-Hotkey, *`; , ButtonX1Click   
-Hotkey, *', ButtonX2Click   
-
-Hotkey, *n, ButtonWheelUp
-Hotkey, *h, ButtonWheelDown
-
-Hotkey, *i, ButtonUp
-Hotkey, *`, , ButtonDown
-Hotkey, *j, ButtonLeft
-Hotkey, *l, ButtonRight
-Hotkey, *u, ButtonUpLeft
-Hotkey, *m, ButtonUpRight
-Hotkey, *o, ButtonDownLeft
-Hotkey, *., ButtonDownRight
-
-Hotkey, Numpad8, ButtonSpeedUp
-Hotkey, Numpad2, ButtonSpeedDown
-Hotkey, Numpad7, ButtonAccelerationSpeedUp
-Hotkey, Numpad1, ButtonAccelerationSpeedDown
-Hotkey, Numpad9, ButtonMaxSpeedUp
-Hotkey, Numpad3, ButtonMaxSpeedDown
-
-Hotkey, Numpad6, ButtonRotationAngleUp
-Hotkey, Numpad4, ButtonRotationAngleDown
-
-Hotkey, !Numpad8, ButtonWheelSpeedUp
-Hotkey, !Numpad2, ButtonWheelSpeedDown
-Hotkey, !Numpad7, ButtonWheelAccelerationSpeedUp
-Hotkey, !Numpad1, ButtonWheelAccelerationSpeedDown
-Hotkey, !Numpad9, ButtonWheelMaxSpeedUp
-Hotkey, !Numpad3, ButtonWheelMaxSpeedDown
+ 
+Hotkey, %btnLeftClick%, ButtonLeftClick
+Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
+Hotkey, %btnMiddleClick%, ButtonMiddleClick
+Hotkey, %btnMiddleClickClear%, ButtonMiddleClickClear
+Hotkey, %btnRightClick%, ButtonRightClick
+Hotkey, %btnRightClickDel%, ButtonRightClickDel
+Hotkey, %btnX1Click%, ButtonX1Click
+Hotkey, %btnX2Click%, ButtonX2Click
+ 
+Hotkey, %btnWheelUp%, ButtonWheelUp
+Hotkey, %btnWheelDown%, ButtonWheelDown
+ 
+Hotkey, %btnUp%, ButtonUp
+Hotkey, %btnDown%, ButtonDown
+Hotkey, %btnLeft%, ButtonLeft
+Hotkey, %btnRight%, ButtonRight
+Hotkey, %btnUpLeft%, ButtonUpLeft
+Hotkey, %btnUpRight%, ButtonUpRight
+Hotkey, %btnDownLeft%, ButtonDownLeft
+Hotkey, %btnDownRight%, ButtonDownRight
+ 
+Hotkey, %btnSpeedUp%, ButtonSpeedUp
+Hotkey, %btnSpeedDown%, ButtonSpeedDown
+Hotkey, %btnAccelerationSpeedUp%, ButtonAccelerationSpeedUp
+Hotkey, %btnAccelerationSpeedDown%, ButtonAccelerationSpeedDown
+Hotkey, %btnMaxSpeedUp%, ButtonMaxSpeedUp
+Hotkey, %btnMaxSpeedDown%, ButtonMaxSpeedDown
+ 
+Hotkey, %btnRotationAngleUp%, ButtonRotationAngleUp
+Hotkey, %btnRotationAngleDown%, ButtonRotationAngleDown
+ 
+Hotkey, %btnWheelSpeedUp%, ButtonWheelSpeedUp
+Hotkey, %btnWheelSpeedDown%, ButtonWheelSpeedDown
+Hotkey, %btnWheelAccelerationSpeedUp%, ButtonWheelAccelerationSpeedUp
+Hotkey, %btnWheelAccelerationSpeedDown%, ButtonWheelAccelerationSpeedDown
+Hotkey, %btnWheelMaxSpeedUp%, ButtonWheelMaxSpeedUp
+Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown
 
 
 HFONT := GetHFONT("s6", "Arial")

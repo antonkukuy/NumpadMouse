@@ -71,8 +71,8 @@ o------------------------------------------------------------o
 Process, Priority, , AboveNormal     ; Эта запись сообщает операционной системе уделить больше внимания к исполнению данных команд
 
 MouseSpeed = 1
-MouseAccelerationSpeed = 35
-MouseMaxSpeed = 20
+MouseAccelerationSpeed = 100  ;45  ;35
+MouseMaxSpeed = 40  ;35   ;20
 
 ;Mouse wheel speed is also set on Control Panel. As that
 ;will affect the normal mouse behavior, the real speed of
@@ -114,7 +114,10 @@ SetKeyDelay, -1
 SetMouseDelay, -1
 
 Hotkey, *NumPad0, ButtonLeftClick   
-Hotkey, *Space, ButtonLeftClickIns   
+Hotkey, >^Space, ButtonLeftClickIns   
+Hotkey, >+Space, ButtonLeftClickIns   
+Hotkey, !Space, ButtonLeftClickIns   
+Hotkey, Space, ButtonLeftClickIns   
 Hotkey, *k, ButtonMiddleClick   
 Hotkey, *NumpadClear, ButtonMiddleClickClear   
 Hotkey, *RControl, ButtonRightClick   
@@ -159,129 +162,32 @@ Hotkey, !Numpad3, ButtonWheelMaxSpeedDown
 
 
 HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("M", 0, 766, 2,HFONT, "Red", "Black",,"S")
+;ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
+ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
+Suspend   ; Turn off on onload
 
-Gosub, ~ScrollLock  ; Initialize based on current ScrollLock state.
 return
 
 
-;SetScrollLockState On
 
-~` & F3::ExitApp 
-sc152::
+~vkC0 & F3::ExitApp               ; ` & F3
+>+>!r::Reload  ; Assign RShift-RAlt-R as a hotkey to restart the script.
+sc152::                           ; insert
 Suspend
 ;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
 If (A_IsSuspended)
 {
 HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("M", 0, 766, 2,HFONT, "Black", "White",,"S")
+ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
 }
 else
 {
 HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("M", 0, 766, 2,HFONT, "Red", "Black",,"S")
+ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
 }
 return
 
-;Key activation support
-
-~ScrollLock::
-; Wait for it to be released because otherwise the hook state gets reset
-; while the key is down, which causes the up-event to get suppressed,
-; which in turn prevents toggling of the ScrollLock state/light:
-KeyWait, ScrollLock
-GetKeyState, ScrollLockState, ScrollLock, T
-If ScrollLockState = D
-{
-    Hotkey, *NumPad0, on
-    Hotkey, *Space, on
-    Hotkey, *`, , on
-    Hotkey, *RControl, on
-    Hotkey, *NumPadDel, on
-    Hotkey, *', on
-    Hotkey, *`; , on
-
-    Hotkey, *h, on
-    Hotkey, *n, on
-
-    Hotkey, *i, on
-    Hotkey, *k, on
-    Hotkey, *j, on
-    Hotkey, *l, on
-/*
-    Hotkey, +i, on
-    Hotkey, +`, , on
-    Hotkey, +j, on
-    Hotkey, +l, on
-    */
-    Hotkey, *u, on
-    Hotkey, *m, on
-    Hotkey, *o, on
-    Hotkey, *., on
-
-    Hotkey, Numpad8, on
-    Hotkey, Numpad2, on
-    Hotkey, Numpad7, on
-    Hotkey, Numpad1, on
-    Hotkey, Numpad9, on
-    Hotkey, Numpad3, on
-
-    Hotkey, Numpad6, on
-    Hotkey, Numpad4, on
-
-    Hotkey, !Numpad8, on
-    Hotkey, !Numpad2, on
-    Hotkey, !Numpad7, on
-    Hotkey, !Numpad1, on
-    Hotkey, !Numpad9, on
-    Hotkey, !Numpad3, on
-}
-else
-{
-    Hotkey, *NumPad0, off
-    Hotkey, *Space, off
-    Hotkey, *k, off
-    Hotkey, *RControl, off
-    Hotkey, *NumPadDel, off
-    Hotkey, *', off
-    Hotkey, *`; , off
-
-    Hotkey, *h, off
-    Hotkey, *n, off
-
-    Hotkey, *i, off
-    Hotkey, *`,, off
-    Hotkey, *j, off
-    Hotkey, *l, off
-/*
-    Hotkey, +i, off
-    Hotkey, +`,, off
-    Hotkey, +j, off
-    Hotkey, +l, off
-    */
-    Hotkey, *u, off
-    Hotkey, *m, off
-    Hotkey, *o, off
-    Hotkey, *., off
-
-    Hotkey, Numpad8, off
-    Hotkey, Numpad2, off
-    Hotkey, Numpad7, off
-    Hotkey, Numpad1, off
-    Hotkey, Numpad9, off
-    Hotkey, Numpad3, off
-
-    Hotkey, Numpad6, off
-    Hotkey, Numpad4, off
-
-    Hotkey, !Numpad8, off
-    Hotkey, !Numpad2, off
-    Hotkey, !Numpad7, off
-    Hotkey, !Numpad1, off
-    Hotkey, !Numpad9, off
-    Hotkey, !Numpad3, off
-}
-return
+!sc152::send {Insert}                           ; !Insert - insert
 
 ;Mouse click support
 

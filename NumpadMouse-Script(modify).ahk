@@ -132,12 +132,6 @@ Hotkey, *i, ButtonUp
 Hotkey, *`, , ButtonDown
 Hotkey, *j, ButtonLeft
 Hotkey, *l, ButtonRight
-/*
-Hotkey, +i, ButtonKeyboardUp
-Hotkey, +`, , ButtonKeyboardDown
-Hotkey, +j, ButtonKeyboardLeft
-Hotkey, +l, ButtonKeyboardRight
-*/
 Hotkey, *u, ButtonUpLeft
 Hotkey, *m, ButtonUpRight
 Hotkey, *o, ButtonDownLeft

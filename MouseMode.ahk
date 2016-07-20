@@ -1,4 +1,5 @@
-
+; README
+;{{{
 /*
 o------------------------------------------------------------o
 |Using Keyboard Numpad as a Mouse                            |
@@ -56,9 +57,14 @@ o------------------------------------------------------------o
 | wheel, the default is 3 +/- lines per option button press. |
 o------------------------------------------------------------o
 */
+;}}}
+
+; CONFIG SECTION
+;{{{
+
+Process, Priority, , AboveNormal
 
 ;START OF CONFIG SECTION
-
 #SingleInstance force
 #MaxHotkeysPerInterval 500
 
@@ -68,7 +74,6 @@ o------------------------------------------------------------o
 ; by holding down ALT and sending a series of Numpad keystrokes.
 ; Hook hotkeys are smart enough to ignore such keystrokes.
 #UseHook
-Process, Priority, , AboveNormal     ; Эта запись сообщает операционной системе уделить больше внимания к исполнению данных команд
 
 MouseSpeed = 1
 MouseAccelerationSpeed = 100  ;45  ;35
@@ -109,7 +114,31 @@ MouseCurrentSpeed = %MouseSpeed%
 
 MouseWheelCurrentAccelerationSpeed = 0
 MouseWheelCurrentSpeed = %MouseSpeed%
+;}}}
 
+; MODE 
+;{{{
+
+GroupAdd VimGroup
+;GroupAdd, VimGroup, , , , Klavarog
+
+;GroupAdd VimGroup, ahk_exe acad.exe
+;GroupAdd VimGroup, ahk_exe chrome.exe
+;GroupAdd VimGroup, ahk_exe sublime_text.exe
+;GroupAdd AllWindons
+
+; vim_verbose: 0 - no message; 1 - short message; 2 - full message
+vim_verbose=0
+
+VimMode=Mouse
+Vim_g=0
+Vim_n=0
+VimLineCopy=0
+
+;}}}
+
+; HOTKEY
+;{{{
 btnLeftClick = *NumPad0
 btnLeftClickIns = >^Space
 btnLeftClickIns = >+Space
@@ -188,7 +217,11 @@ Hotkey, %btnWheelAccelerationSpeedUp%, ButtonWheelAccelerationSpeedUp
 Hotkey, %btnWheelAccelerationSpeedDown%, ButtonWheelAccelerationSpeedDown
 Hotkey, %btnWheelMaxSpeedUp%, ButtonWheelMaxSpeedUp
 Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown
+;}}}
 
+;TOOLTIP AND SUSPEND SCRIPT
+;{{{
+#Include, d:\KEYBOARD\ToolTip\ToolTipEx.ahk
 
 HFONT := GetHFONT("s6", "Arial")
 ;ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
@@ -209,14 +242,120 @@ If (A_IsSuspended)
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
 }
-else
+else If (VimMode == "Mouse")
 {
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
 }
+else
+{
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("A", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+}
 return
 
 !sc152::send {Insert}                           ; !Insert - insert
+;}}}
+
+; SET MODE {{{
+#IfWInActive, ahk_group VimGroup
+
+VimSetMode(Mode="", g=0, n=0, LineCopy=-1) {
+  global
+  if(Mode!=""){
+    VimMode=%Mode%
+  }
+  if (g != -1){
+    Vim_g=%g%
+  }
+  if (n != -1){
+    Vim_n=%n%
+  }
+  if (LineCopy!=-1) {
+    VimLineCopy=%LineCopy%
+  }
+  VimCheckMode(vim_verbose,Mode,g,n,LineCopy)
+  Return
+}
+VimCheckMode(verbose=0,Mode="", g=0, n=0, LineCopy=-1) {
+  global
+  if(verbose<1) or ((Mode=="" ) and (g==0) and (n==0) and (LineCopy==-1)) {
+    Return
+  }else if(verbose=1){
+    TrayTip,VimMode,%VimMode%,1,, ; 1 sec is minimum for TrayTip
+  }else if(verbose=2){
+    TrayTip,VimMode,%VimMode%`r`ng=%Vim_g%`r`nn=%Vim_n%,1,,
+  }
+  if(verbose=3){
+    Msgbox,
+    (
+    VimMode: %VimMode%
+    Vim_g: %Vim_g%
+    Vim_n: %Vim_n%
+    VimLineCopy: %VimLineCopy%
+    )
+  }
+  Return
+}
+
+;^!+sc1E::    ;sc1E key  - a
+^!+a::    ;sc1E key  - a
+  VimCheckMode(3,VimMode)
+  Return
+; }}}
+
+; Enter vim normal mode {{{
+#IfWInActive, (ahk_group VimGroup) && (VimMode == "Insert")
+;+sc14:: ; Just send Esc at converting, long press for normal Esc.
++t:: ; Just send Esc at converting, long press for normal Esc.
+  ;KeyWait, sc14, T0.5   ; sc14 key - t
+  KeyWait, t, T0.5   ; sc14 key - t
+  if (ErrorLevel){ ; long press
+    Send,{Esc}
+    Return
+  }
+  else {
+    VimSetMode("Normal")
+  }
+  Return
+
+
+
+/*
+^[:: ; Go to Normal mode (for vim) with IME off even at converting.
+  KeyWait, [, T0.5
+  if (ErrorLevel){ ; long press to Esc
+    Send,{Esc}
+    Return
+  }
+*/
+
+
+; }}}
+
+; Toogle mode {{{
+
+#If WInActive("ahk_group VimGroup")  && (VimMode =="Arrows")
+
+y::
+VimSetMode("Mouse")  ;q
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
+Return
+
+#If WInActive("ahk_group VimGroup") && (VimMode=="Mouse")
+
+y::
+VimSetMode("Arrows")  ;t
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("A", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+Return
+
+;}}}
+
+; MOUSE MODE 
+;{{{
+#If WInActive("ahk_group VimGroup") and (VimMode="Mouse")
 
 ;Mouse click support
 
@@ -360,18 +499,6 @@ ToolTip, Mouse rotation angle: %MouseRotationAngle%°
 SetTimer, RemoveToolTip, 1000
 return
 
-/*
-ButtonKeyboardUp:
-ButtonKeyboardDown:
-ButtonKeyboardLeft:
-ButtonKeyboardRight:
-+i::send {Up}
-+,::send {Down}
-+j::send {Left}
-+l::send {Right}
-Msgbox It's work
-Return
-*/
 ButtonUp:
 ButtonDown:
 ButtonLeft:
@@ -734,8 +861,17 @@ ToolTip
 return
 
 #Include, d:\KEYBOARD\NumpadMouse\AddonsForNumpadMouse-Script.ahk
-#Include, d:\KEYBOARD\ToolTip\ToolTipEx.ahk
 
+; Clean mode
 #IfWinActive
+;}}} Mouse
 
+; ARROWS MODE 
+;{{{
+#If WInActive("ahk_group VimGroup") and (VimMode="Arrows")
 
+#Include, d:\KEYBOARD\NumpadMouse\AddonsForArrowsMode.ahk
+
+; Clean mode
+#IfWinActive
+;}}} Arrows

@@ -140,10 +140,10 @@ VimLineCopy=0
 ; HOTKEY
 ;{{{
 btnLeftClick = *NumPad0
-btnLeftClickIns = >^Space
-btnLeftClickIns = >+Space
-btnLeftClickIns = !Space
 btnLeftClickIns = Space
+btnLeftClickIns_2 = >^Space
+btnLeftClickIns_3 = >+Space
+btnLeftClickIns_4 = !Space
 btnMiddleClick = *k
 btnMiddleClickClear = *NumpadClear
 btnRightClick = *RControl
@@ -179,9 +179,9 @@ SetMouseDelay, -1
  
 Hotkey, %btnLeftClick%, ButtonLeftClick
 Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns_2%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns_3%, ButtonLeftClickIns
+Hotkey, %btnLeftClickIns_4%, ButtonLeftClickIns
 Hotkey, %btnMiddleClick%, ButtonMiddleClick
 Hotkey, %btnMiddleClickClear%, ButtonMiddleClickClear
 Hotkey, %btnRightClick%, ButtonRightClick
@@ -363,14 +363,14 @@ ButtonLeftClick:
 GetKeyState, already_down_state, LButton
 If already_down_state = D
     return
-Button2 = NumPad0
+Button2 = %btnLeftClick%
 ButtonClick = Left
 Goto ButtonClickStart
 ButtonLeftClickIns:
 GetKeyState, already_down_state, LButton
 If already_down_state = D
     return
-Button2 = Space
+Button2 = %btnLeftClickIns%
 ButtonClick = Left
 Goto ButtonClickStart
 
@@ -378,14 +378,14 @@ ButtonMiddleClick:
 GetKeyState, already_down_state, MButton
 If already_down_state = D
     return
-Button2 =k
+Button2 = %btnMiddleClick%
 ButtonClick = Middle
 Goto ButtonClickStart
 ButtonMiddleClickClear:
 GetKeyState, already_down_state, MButton
 If already_down_state = D
     return
-Button2 = NumpadClear
+Button2 = %btnMiddleClickClear%
 ButtonClick = Middle
 Goto ButtonClickStart
 
@@ -393,14 +393,14 @@ ButtonRightClick:
 GetKeyState, already_down_state, RButton
 If already_down_state = D
     return
-Button2 = RControl
+Button2 = %btnRightClick%
 ButtonClick = Right
 Goto ButtonClickStart
 ButtonRightClickDel:
 GetKeyState, already_down_state, RButton
 If already_down_state = D
     return
-Button2 = NumPadDel
+Button2 = %btnRightClickDel%
 ButtonClick = Right
 Goto ButtonClickStart
 
@@ -408,7 +408,7 @@ ButtonX1Click:
 GetKeyState, already_down_state, XButton1
 If already_down_state = D
     return
-Button2 = h
+Button2 = %btnX1Click%
 ButtonClick = X1
 Goto ButtonClickStart
 
@@ -416,7 +416,7 @@ ButtonX2Click:
 GetKeyState, already_down_state, XButton2
 If already_down_state = D
     return
-Button2 = n
+Button2 = %btnX2Click%
 ButtonClick = X2
 Goto ButtonClickStart
 

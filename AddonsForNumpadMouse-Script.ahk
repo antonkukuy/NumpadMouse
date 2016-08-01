@@ -7,12 +7,12 @@ ControlSend, , {Control down}cc{Control up}, ahk_exe Lingvo.exe ; tranclate Ling
 
 RControl & vkDB::Send {ESC}    ;^[
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
-RControl & k::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
+RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
 ~Space & vk48 ::Send {HOME}     ; space & h  - head page
 ~Space & vk4E ::Send {END}     ; space & n  - footer page
-RControl & '::Send {LCtrl down}{Tab}{LCtrl up}
-RControl & `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
-RControl & vk4F::WinMaximize, A    ; ^o  - max window
+'::Send {LCtrl down}{Tab}{LCtrl up}
+`;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
+LControl & vk4F::WinMaximize, A    ; ^o  - max window
 RControl & vk4D::WinMinimize, A    ; ^m  - mix window
 AppsKey::send {Space}
 <^n::send N

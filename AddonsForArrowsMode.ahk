@@ -6,5 +6,6 @@ i::send, {Up}
 j::send, {Left}
 l::send, {Right}
 ,::send, {Down}
+Space::send, {Space}
 
 #IfWinActive

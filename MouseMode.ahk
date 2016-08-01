@@ -144,12 +144,12 @@ btnLeftClickIns = Space
 btnLeftClickIns_2 = >^Space
 btnLeftClickIns_3 = >+Space
 btnLeftClickIns_4 = !Space
-btnMiddleClick = *k
+btnMiddleClick = *y
 btnMiddleClickClear = *NumpadClear
 btnRightClick = *RControl
 btnRightClickDel = *NumPadDel
-btnX1Click = *`; 
-btnX2Click = *'
+btnX1Click = RControl & o 
+btnX2Click = RControl & i
 btnWheelUp = *n
 btnWheelDown = *h
 btnUp = *i
@@ -235,6 +235,7 @@ return
 ~vkC0 & F3::ExitApp               ; ` & F3
 >+>!r::Reload  ; Assign RShift-RAlt-R as a hotkey to restart the script.
 sc152::                           ; insert
+>^k::
 Suspend
 ;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
 If (A_IsSuspended)
@@ -336,19 +337,49 @@ VimCheckMode(verbose=0,Mode="", g=0, n=0, LineCopy=-1) {
 ; Toogle mode {{{
 
 #If WInActive("ahk_group VimGroup")  && (VimMode =="Arrows")
+k::
+N:=0
+Loop {
+   N++
+   KeyWait, %A_ThisHotkey%
+   KeyWait, %A_ThisHotkey%, D T0.1
+} Until ErrorLevel
+   Gosub % IsLabel(L := A_ThisHotkey . "_" . N) ? L : "NotCombs"
+Return
+NotCombs:
+;   MsgBox % "You have exceeded the number of combinations " . A_ThisHotkey . " : " . N
+Return
 
-y::
-VimSetMode("Mouse")  ;q
+k_1:
+VimSetMode("Mouse")
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
 Return
+k_2:
+Send, {ESC}
+Return
 
 #If WInActive("ahk_group VimGroup") && (VimMode=="Mouse")
+k::
+N:=0
+Loop {
+   N++
+   KeyWait, %A_ThisHotkey%
+   KeyWait, %A_ThisHotkey%, D T0.1
+} Until ErrorLevel
+   Gosub % IsLabel(L := A_ThisHotkey . "__" . N) ? L : "NotCombs"
+Return
+NotCombs_1:
+;   MsgBox % "You have exceeded the number of combinations " . A_ThisHotkey . " : " . N
+Return
 
-y::
-VimSetMode("Arrows")  ;t
+k__1:
+VimSetMode("Arrows")
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("A", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+Return
+k__2:
+Send, {ESC}
 Return
 
 ;}}}

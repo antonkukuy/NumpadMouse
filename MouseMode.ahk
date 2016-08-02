@@ -221,7 +221,7 @@ Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown
 
 ;TOOLTIP AND SUSPEND SCRIPT
 ;{{{
-#Include, d:\KEYBOARD\ToolTip\ToolTipEx.ahk
+#Include, ToolTipEx.ahk
 
 HFONT := GetHFONT("s6", "Arial")
 ;ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")

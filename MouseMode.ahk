@@ -222,7 +222,6 @@ Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown, Off
 
 ;TOOLTIP AND SUSPEND SCRIPT
 ;{{{
-#Include, ToolTipEx.ahk
 
 HFONT := GetHFONT("s6", "Arial")
 ;ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
@@ -266,6 +265,12 @@ ToolTipEx("E", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
 return
 
 !sc152::send {Insert}                           ; !Insert - insert
+;}}}
+
+; EXTERNAL FUNCTIONS
+;{{{
+#include MultiPress.ahk
+#Include, ToolTipEx.ahk
 ;}}}
 
 ;MAIN PART OF SCRIPT(labels)
@@ -948,7 +953,7 @@ Return
 #If ; Clean mode
 ;}}} Mouse
 
-; EMACS MODE ;{{{
+; INTUP MODE ;{{{
 #If WInActive("ahk_group MouseGroup") && !WInActive("ahk_group NotEmacsGroup") && (MouseMode="Arrows")
 
 ;+a::MsgBox % "EmacsGroup"

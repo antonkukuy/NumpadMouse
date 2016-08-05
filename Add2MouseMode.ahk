@@ -1,4 +1,3 @@
-#include MultiPress.ahk
 GroupAdd, Games, ahk_exe ugol.exe              ; table shulte
 GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
 

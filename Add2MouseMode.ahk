@@ -6,10 +6,13 @@ detectHiddenWindows, on
 ControlSend, , {Control down}cc{Control up}, ahk_exe Lingvo.exe ; tranclate Lingvo
 
 RControl & vkDB::Send {ESC}    ;^[
+RControl & y::Send ^c
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
 RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
-~Space & vk48 ::Send {HOME}     ; space & h  - head page
-~Space & vk4E ::Send {END}     ; space & n  - footer page
+;~Space & vk48 ::Send {HOME}     ; space & h  - head page
+;~Space & vk4E ::Send {END}     ; space & n  - footer page
+!Space::Send {HOME}     ; space & h  - head page
+>^Space::Send {END}     ; space & n  - footer page
 '::Send {LCtrl down}{Tab}{LCtrl up}
 `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
 LControl & vk4F::WinMaximize, A    ; ^o  - max window
@@ -19,6 +22,7 @@ AppsKey::send {Space}
 <^p::send P
 <^i::send {Up}
 <^k::send {Down}
+RControl & n::send {Down}
 +k::send k
 <^j::send {Left}
 +j::send j
@@ -108,33 +112,3 @@ Return
 ;Return
 #IfWinActive
 
-/*
-#IfWinActive, ahk_class TTOTAL_CMD
-    SetScrollLockState, Off 
-    Return
-
-#IfWinNotActive, ahk_class TTOTAL_CMD
-    SetScrollLockState, On 
-    Return
-
-*/
-
-; Восстановление последнего свернутого окна
-/*
-DetectHiddenWindows, on ;включаем поиск в скрытых окнах
-!`:: ; Alt+ ` - горячая клавиша
- 
-If Win_To_Hide_ID = ;если значение переменной  пусто (т.е. окно еще не скрывалось)
-    {
-        WinGet, Win_To_Hide_ID, ID, A ; сохранить ID скрываемого окна в переменной
-        WinHide, ahk_id %Win_To_Hide_ID% ; скрыть окно
-    }
-else ;если же окно уже скрыто, то выполняем:
-    {
-        WinShow, ahk_id %Win_To_Hide_ID% ; восстановить скрытое окно с запомненным ID
-        WinActivate, ahk_id %Win_To_Hide_ID% ; активизировать его
-        Win_To_Hide_ID = ;обнуляем значение переменной, чтобы можно было снова скрывать окно
-    }
-
-Return ; закончить обработку горячей клавиши
-*/

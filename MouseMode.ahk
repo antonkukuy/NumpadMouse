@@ -119,21 +119,22 @@ MouseWheelCurrentSpeed = %MouseSpeed%
 ; MODE 
 ;{{{
 
-GroupAdd VimGroup
-;GroupAdd, VimGroup, , , , Klavarog
+GroupAdd MouseGroup
+;GroupAdd, MouseGroup, , , , Klavarog
 
-;GroupAdd VimGroup, ahk_exe acad.exe
-;GroupAdd VimGroup, ahk_exe chrome.exe
-;GroupAdd VimGroup, ahk_exe sublime_text.exe
+;GroupAdd MouseGroup, ahk_exe acad.exe
+;GroupAdd MouseGroup, ahk_exe chrome.exe
+GroupAdd NotEmacsGroup, ahk_exe mintty.exe
+;GroupAdd MouseGroup, ahk_exe sublime_text.exe
 ;GroupAdd AllWindons
 
-; vim_verbose: 0 - no message; 1 - short message; 2 - full message
-vim_verbose=0
-
-VimMode=Mouse
-Vim_g=0
-Vim_n=0
-VimLineCopy=0
+; Mouse_verbose: 0 - no message; 1 - short message; 2 - full message
+Mouse_verbose=0
+; MouseMode: Mouse; Arrows
+MouseMode=Arrows
+Mouse_g=0
+Mouse_n=0
+MouseLineCopy=0
 
 ;}}}
 
@@ -177,46 +178,46 @@ btnWheelMaxSpeedDown = !Numpad3
 SetKeyDelay, -1
 SetMouseDelay, -1
  
-Hotkey, %btnLeftClick%, ButtonLeftClick
-Hotkey, %btnLeftClickIns%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns_2%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns_3%, ButtonLeftClickIns
-Hotkey, %btnLeftClickIns_4%, ButtonLeftClickIns
-Hotkey, %btnMiddleClick%, ButtonMiddleClick
-Hotkey, %btnMiddleClickClear%, ButtonMiddleClickClear
-Hotkey, %btnRightClick%, ButtonRightClick
-Hotkey, %btnRightClickDel%, ButtonRightClickDel
-Hotkey, %btnX1Click%, ButtonX1Click
-Hotkey, %btnX2Click%, ButtonX2Click
- 
-Hotkey, %btnWheelUp%, ButtonWheelUp
-Hotkey, %btnWheelDown%, ButtonWheelDown
- 
-Hotkey, %btnUp%, ButtonUp
-Hotkey, %btnDown%, ButtonDown
-Hotkey, %btnLeft%, ButtonLeft
-Hotkey, %btnRight%, ButtonRight
-Hotkey, %btnUpLeft%, ButtonUpLeft
-Hotkey, %btnUpRight%, ButtonUpRight
-Hotkey, %btnDownLeft%, ButtonDownLeft
-Hotkey, %btnDownRight%, ButtonDownRight
- 
-Hotkey, %btnSpeedUp%, ButtonSpeedUp
-Hotkey, %btnSpeedDown%, ButtonSpeedDown
-Hotkey, %btnAccelerationSpeedUp%, ButtonAccelerationSpeedUp
-Hotkey, %btnAccelerationSpeedDown%, ButtonAccelerationSpeedDown
-Hotkey, %btnMaxSpeedUp%, ButtonMaxSpeedUp
-Hotkey, %btnMaxSpeedDown%, ButtonMaxSpeedDown
- 
-Hotkey, %btnRotationAngleUp%, ButtonRotationAngleUp
-Hotkey, %btnRotationAngleDown%, ButtonRotationAngleDown
- 
-Hotkey, %btnWheelSpeedUp%, ButtonWheelSpeedUp
-Hotkey, %btnWheelSpeedDown%, ButtonWheelSpeedDown
-Hotkey, %btnWheelAccelerationSpeedUp%, ButtonWheelAccelerationSpeedUp
-Hotkey, %btnWheelAccelerationSpeedDown%, ButtonWheelAccelerationSpeedDown
-Hotkey, %btnWheelMaxSpeedUp%, ButtonWheelMaxSpeedUp
-Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown
+Hotkey, %btnLeftClick%, ButtonLeftClick, Off
+Hotkey, %btnLeftClickIns%, ButtonLeftClickIns, Off
+Hotkey, %btnLeftClickIns_2%, ButtonLeftClickIns, Off
+Hotkey, %btnLeftClickIns_3%, ButtonLeftClickIns, Off
+Hotkey, %btnLeftClickIns_4%, ButtonLeftClickIns, Off
+Hotkey, %btnMiddleClick%, ButtonMiddleClick, Off
+Hotkey, %btnMiddleClickClear%, ButtonMiddleClickClear, Off
+Hotkey, %btnRightClick%, ButtonRightClick, Off
+Hotkey, %btnRightClickDel%, ButtonRightClickDel, Off
+Hotkey, %btnX1Click%, ButtonX1Click, Off
+Hotkey, %btnX2Click%, ButtonX2Click, Off
+
+Hotkey, %btnWheelUp%, ButtonWheelUp, Off
+Hotkey, %btnWheelDown%, ButtonWheelDown, Off
+
+Hotkey, %btnUp%, ButtonUp, Off
+Hotkey, %btnDown%, ButtonDown, Off
+Hotkey, %btnLeft%, ButtonLeft, Off
+Hotkey, %btnRight%, ButtonRight, Off
+Hotkey, %btnUpLeft%, ButtonUpLeft, Off
+Hotkey, %btnUpRight%, ButtonUpRight, Off
+Hotkey, %btnDownLeft%, ButtonDownLeft, Off
+Hotkey, %btnDownRight%, ButtonDownRight, Off
+
+Hotkey, %btnSpeedUp%, ButtonSpeedUp, Off
+Hotkey, %btnSpeedDown%, ButtonSpeedDown, Off
+Hotkey, %btnAccelerationSpeedUp%, ButtonAccelerationSpeedUp, Off
+Hotkey, %btnAccelerationSpeedDown%, ButtonAccelerationSpeedDown, Off
+Hotkey, %btnMaxSpeedUp%, ButtonMaxSpeedUp, Off
+Hotkey, %btnMaxSpeedDown%, ButtonMaxSpeedDown, Off
+
+Hotkey, %btnRotationAngleUp%, ButtonRotationAngleUp, Off
+Hotkey, %btnRotationAngleDown%, ButtonRotationAngleDown, Off
+
+Hotkey, %btnWheelSpeedUp%, ButtonWheelSpeedUp, Off
+Hotkey, %btnWheelSpeedDown%, ButtonWheelSpeedDown, Off
+Hotkey, %btnWheelAccelerationSpeedUp%, ButtonWheelAccelerationSpeedUp, Off
+Hotkey, %btnWheelAccelerationSpeedDown%, ButtonWheelAccelerationSpeedDown, Off
+Hotkey, %btnWheelMaxSpeedUp%, ButtonWheelMaxSpeedUp, Off
+Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown, Off
 ;}}}
 
 ;TOOLTIP AND SUSPEND SCRIPT
@@ -225,17 +226,26 @@ Hotkey, %btnWheelMaxSpeedDown%, ButtonWheelMaxSpeedDown
 
 HFONT := GetHFONT("s6", "Arial")
 ;ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
-ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
-Suspend   ; Turn off on onload
+;ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
+ToolTipEx("E", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+;Suspend   ; Turn off on onload
 
 return
 
 
 
-~vkC0 & F3::ExitApp               ; ` & F3
->+>!r::Reload  ; Assign RShift-RAlt-R as a hotkey to restart the script.
-sc152::                           ; insert
->^k::
+~vkC0 & F3::ExitApp     ; ` & F3
+>+>!r::           ; Assign RShift-RAlt-R as a hotkey to restart the script.:
+TrayTip, Timed TrayTip, This will be displayed for 5 seconds.
+SetTimer, RemoveTrayTip, 1000
+return
+RemoveTrayTip:
+SetTimer, RemoveTrayTip, Off
+TrayTip
+Reload
+return
+;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
+sc152::                 ; insert
 Suspend
 ;ToolTip % (A_IsSuspended) ? "S": Return , 1336, 757
 If (A_IsSuspended)
@@ -243,7 +253,7 @@ If (A_IsSuspended)
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("M", 1300, 766, 2,HFONT, "Black", "White",,"S")
 }
-else If (VimMode == "Mouse")
+else If (MouseMode == "Mouse")
 {
 HFONT := GetHFONT("s6", "Arial")
 ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
@@ -251,145 +261,15 @@ ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
 else
 {
 HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("A", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+ToolTipEx("E", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
 }
 return
 
 !sc152::send {Insert}                           ; !Insert - insert
 ;}}}
 
-; SET MODE {{{
-#IfWInActive, ahk_group VimGroup
-
-VimSetMode(Mode="", g=0, n=0, LineCopy=-1) {
-  global
-  if(Mode!=""){
-    VimMode=%Mode%
-  }
-  if (g != -1){
-    Vim_g=%g%
-  }
-  if (n != -1){
-    Vim_n=%n%
-  }
-  if (LineCopy!=-1) {
-    VimLineCopy=%LineCopy%
-  }
-  VimCheckMode(vim_verbose,Mode,g,n,LineCopy)
-  Return
-}
-VimCheckMode(verbose=0,Mode="", g=0, n=0, LineCopy=-1) {
-  global
-  if(verbose<1) or ((Mode=="" ) and (g==0) and (n==0) and (LineCopy==-1)) {
-    Return
-  }else if(verbose=1){
-    TrayTip,VimMode,%VimMode%,1,, ; 1 sec is minimum for TrayTip
-  }else if(verbose=2){
-    TrayTip,VimMode,%VimMode%`r`ng=%Vim_g%`r`nn=%Vim_n%,1,,
-  }
-  if(verbose=3){
-    Msgbox,
-    (
-    VimMode: %VimMode%
-    Vim_g: %Vim_g%
-    Vim_n: %Vim_n%
-    VimLineCopy: %VimLineCopy%
-    )
-  }
-  Return
-}
-
-;^!+sc1E::    ;sc1E key  - a
-^!+a::    ;sc1E key  - a
-  VimCheckMode(3,VimMode)
-  Return
-; }}}
-
-; Enter vim normal mode {{{
-#IfWInActive, (ahk_group VimGroup) && (VimMode == "Insert")
-;+sc14:: ; Just send Esc at converting, long press for normal Esc.
-+t:: ; Just send Esc at converting, long press for normal Esc.
-  ;KeyWait, sc14, T0.5   ; sc14 key - t
-  KeyWait, t, T0.5   ; sc14 key - t
-  if (ErrorLevel){ ; long press
-    Send,{Esc}
-    Return
-  }
-  else {
-    VimSetMode("Normal")
-  }
-  Return
-
-
-
-/*
-^[:: ; Go to Normal mode (for vim) with IME off even at converting.
-  KeyWait, [, T0.5
-  if (ErrorLevel){ ; long press to Esc
-    Send,{Esc}
-    Return
-  }
-*/
-
-
-; }}}
-
-; Toogle mode {{{
-
-#If WInActive("ahk_group VimGroup")  && (VimMode =="Arrows")
-k::
-N:=0
-Loop {
-   N++
-   KeyWait, %A_ThisHotkey%
-   KeyWait, %A_ThisHotkey%, D T0.1
-} Until ErrorLevel
-   Gosub % IsLabel(L := A_ThisHotkey . "_" . N) ? L : "NotCombs"
-Return
-NotCombs:
-;   MsgBox % "You have exceeded the number of combinations " . A_ThisHotkey . " : " . N
-Return
-
-k_1:
-VimSetMode("Mouse")
-HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
-Return
-k_2:
-Send, {ESC}
-Return
-
-#If WInActive("ahk_group VimGroup") && (VimMode=="Mouse")
-k::
-N:=0
-Loop {
-   N++
-   KeyWait, %A_ThisHotkey%
-   KeyWait, %A_ThisHotkey%, D T0.1
-} Until ErrorLevel
-   Gosub % IsLabel(L := A_ThisHotkey . "__" . N) ? L : "NotCombs"
-Return
-NotCombs_1:
-;   MsgBox % "You have exceeded the number of combinations " . A_ThisHotkey . " : " . N
-Return
-
-k__1:
-VimSetMode("Arrows")
-HFONT := GetHFONT("s6", "Arial")
-ToolTipEx("A", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
-Return
-k__2:
-Send, {ESC}
-Return
-
-;}}}
-
-; MOUSE MODE 
+;MAIN PART OF SCRIPT(labels)
 ;{{{
-#If WInActive("ahk_group VimGroup") and (VimMode="Mouse")
-
-;Mouse click support
-
 ButtonLeftClick:
 GetKeyState, already_down_state, LButton
 If already_down_state = D
@@ -890,19 +770,189 @@ RemoveToolTip:
 SetTimer, RemoveToolTip, Off
 ToolTip
 return
+;}}}
 
-#Include, d:\KEYBOARD\NumpadMouse\AddonsForNumpadMouse-Script.ahk
+; SET MODE {{{
 
-; Clean mode
-#IfWinActive
+MouseSetMode(Mode="", g=0, n=0, LineCopy=-1) {
+  global
+  if(Mode!=""){
+    MouseMode=%Mode%
+  }
+  if (g != -1){
+    Mouse_g=%g%
+  }
+  if (n != -1){
+    Mouse_n=%n%
+  }
+  if (LineCopy!=-1) {
+    MouseLineCopy=%LineCopy%
+  }
+  MouseCheckMode(Mouse_verbose,Mode,g,n,LineCopy)
+  Return
+}
+MouseCheckMode(verbose=0,Mode="", g=0, n=0, LineCopy=-1) {
+  global
+  if(verbose<1) or ((Mode=="" ) and (g==0) and (n==0) and (LineCopy==-1)) {
+    Return
+  }else if(verbose=1){
+    TrayTip,MouseMode,%MouseMode%,1,, ; 1 sec is minimum for TrayTip
+  }else if(verbose=2){
+    TrayTip,MouseMode,%MouseMode%`r`ng=%Mouse_g%`r`nn=%Mouse_n%,1,,
+  }
+  if(verbose=3){
+    Msgbox,
+    (
+    MouseMode: %MouseMode%
+    Mouse_g: %Mouse_g%
+    Mouse_n: %Mouse_n%
+    MouseLineCopy: %MouseLineCopy%
+    )
+  }
+  Return
+}
+
+;^!+sc1E::    ;sc1E key  - a
+^!+a::    ;sc1E key  - a
+  MouseCheckMode(3,MouseMode)
+  Return
+; }}}
+
+; TOOGLE MODE {{{
+
+#If WInActive("ahk_group MouseGroup")  && (MouseMode =="Arrows")
+
+>^k::
+Hotkey, %btnLeftClick%, On
+Hotkey, %btnLeftClickIns%, On
+Hotkey, %btnLeftClickIns_2%, On
+Hotkey, %btnLeftClickIns_3%, On
+Hotkey, %btnLeftClickIns_4%, On
+Hotkey, %btnMiddleClick%, On
+Hotkey, %btnMiddleClickClear%, On
+Hotkey, %btnRightClick%, On
+Hotkey, %btnRightClickDel%, On
+Hotkey, %btnX1Click%, On
+Hotkey, %btnX2Click%, On
+ 
+Hotkey, %btnWheelUp%, On
+Hotkey, %btnWheelDown%, On
+ 
+Hotkey, %btnUp%, On
+Hotkey, %btnDown%, On
+Hotkey, %btnLeft%, On
+Hotkey, %btnRight%, On
+Hotkey, %btnUpLeft%, On
+Hotkey, %btnUpRight%, On
+Hotkey, %btnDownLeft%, On
+Hotkey, %btnDownRight%, On
+ 
+Hotkey, %btnSpeedUp%, On
+Hotkey, %btnSpeedDown%, On
+Hotkey, %btnAccelerationSpeedDown%, On
+Hotkey, %btnMaxSpeedUp%, On
+Hotkey, %btnMaxSpeedDown%, On
+ 
+Hotkey, %btnRotationAngleUp%, On
+Hotkey, %btnRotationAngleDown%, On
+ 
+Hotkey, %btnWheelSpeedUp%, On
+Hotkey, %btnWheelSpeedDown%, On
+Hotkey, %btnWheelAccelerationSpeedUp%, On
+Hotkey, %btnWheelAccelerationSpeedDown%, On
+Hotkey, %btnWheelMaxSpeedUp%, On
+Hotkey, %btnWheelMaxSpeedDown%, On
+
+MouseSetMode("Mouse")
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("M", 1300, 766, 2,HFONT, "Red", "Black",,"S")
+Return
+
+#If   ;Clean mode
+
+#If WInActive("ahk_group MouseGroup") && (MouseMode=="Mouse")
+;>^k__1:
+>^k::
+Hotkey, %btnLeftClick%, Off
+Hotkey, %btnLeftClickIns%, Off
+Hotkey, %btnLeftClickIns_2%, Off
+Hotkey, %btnLeftClickIns_3%, Off
+Hotkey, %btnLeftClickIns_4%, Off
+Hotkey, %btnMiddleClick%, Off
+Hotkey, %btnMiddleClickClear%, Off
+Hotkey, %btnRightClick%, Off
+Hotkey, %btnRightClickDel%, Off
+Hotkey, %btnX1Click%, Off
+Hotkey, %btnX2Click%, Off
+ 
+Hotkey, %btnWheelUp%, Off
+Hotkey, %btnWheelDown%, Off
+ 
+Hotkey, %btnUp%, Off
+Hotkey, %btnDown%, Off
+Hotkey, %btnLeft%, Off
+Hotkey, %btnRight%, Off
+Hotkey, %btnUpLeft%, Off
+Hotkey, %btnUpRight%, Off
+Hotkey, %btnDownLeft%, Off
+Hotkey, %btnDownRight%, Off
+ 
+Hotkey, %btnSpeedUp%, Off
+Hotkey, %btnSpeedDown%, Off
+Hotkey, %btnAccelerationSpeedUp%, Off
+Hotkey, %btnAccelerationSpeedDown%, Off
+Hotkey, %btnMaxSpeedUp%, Off
+Hotkey, %btnMaxSpeedDown%, Off
+ 
+Hotkey, %btnRotationAngleUp%, Off
+Hotkey, %btnRotationAngleDown%, Off
+ 
+Hotkey, %btnWheelSpeedUp%, Off
+Hotkey, %btnWheelSpeedDown%, Off
+Hotkey, %btnWheelAccelerationSpeedUp%, Off
+Hotkey, %btnWheelAccelerationSpeedDown%, Off
+Hotkey, %btnWheelMaxSpeedUp%, Off
+Hotkey, %btnWheelMaxSpeedDown%, Off
+
+MouseSetMode("Arrows")
+HFONT := GetHFONT("s6", "Arial")
+ToolTipEx("E", 1300, 766, 2,HFONT, "0x5dff09", "Black",,"S")
+Return
+
+k::
+N:=0
+Loop {
+   N++
+   KeyWait, %A_ThisHotkey%
+   KeyWait, %A_ThisHotkey%, D T0.1
+} Until ErrorLevel
+   Gosub % IsLabel(L := A_ThisHotkey . "__" . N) ? L : "NotCombs"
+Return
+NotCombs:
+;   MsgBox % "You have exceeded the number of combinations " . A_ThisHotkey . " : " . N
+Return
+
+k__2:
+Send, {ESC}
+Return
+
+#If
+;}}}
+
+; MOUSE MODE ;{{{
+#If WInActive("ahk_group MouseGroup") && (MouseMode="Mouse")
+
+;+a::MsgBox % "MouseGroup"
+#Include, Add2MouseMode.ahk
+
+#If ; Clean mode
 ;}}} Mouse
 
-; ARROWS MODE 
-;{{{
-#If WInActive("ahk_group VimGroup") and (VimMode="Arrows")
+; EMACS MODE ;{{{
+#If WInActive("ahk_group MouseGroup") && !WInActive("ahk_group NotEmacsGroup") && (MouseMode="Arrows")
 
-#Include, d:\KEYBOARD\NumpadMouse\AddonsForArrowsMode.ahk
+;+a::MsgBox % "EmacsGroup"
+#Include, LikeEmacsKeys.ahk
 
-; Clean mode
-#IfWinActive
+#If ; Clean mode
 ;}}} Arrows

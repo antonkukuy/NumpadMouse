@@ -1,3 +1,4 @@
+#include MultiPress.ahk
 GroupAdd, Games, ahk_exe ugol.exe              ; table shulte
 GroupAdd, Games, ahk_exe swf_player.exe        ; numbers
 
@@ -9,9 +10,17 @@ RControl & vkDB::Send {ESC}    ;^[
 RControl & y::Send ^c
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
 RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
-;~Space & vk48 ::Send {HOME}     ; space & h  - head page
-;~Space & vk4E ::Send {END}     ; space & n  - footer page
-!Space::Send {HOME}     ; space & h  - head page
+
+!Space::                  ; Launchy: application launch, toTop: to top page of browser
+    Action := MultiPress("Launchy, toTop")
+return
+Launchy:
+send !{Space}
+return
+toTop:
+send, {HOME}
+return
+
 >^Space::Send {END}     ; space & n  - footer page
 '::Send {LCtrl down}{Tab}{LCtrl up}
 `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
@@ -64,6 +73,7 @@ MouseClick, left,  970,  667
 Sleep, 200
 MouseMove,  840,  540
 Return
+
 
 ;If WinActivate (ahk_exe ugol.exe)
 #IfWinActive ahk_exe ugol.exe

@@ -11,6 +11,7 @@ RControl & y::Send ^c
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
 RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
 
+>^Space::Send {END}     ; space & n  - footer page
 !Space::                  ; Launchy: application launch, toTop: to top page of browser
     Action := MultiPress("Launchy, toTop")
 return
@@ -21,7 +22,6 @@ toTop:
 send, {HOME}
 return
 
->^Space::Send {END}     ; space & n  - footer page
 '::Send {LCtrl down}{Tab}{LCtrl up}
 `;::Send {Shift down}{LCtrl down}{Tab}{LCtrl up}{Shift up}
 LControl & vk4F::WinMaximize, A    ; ^o  - max window

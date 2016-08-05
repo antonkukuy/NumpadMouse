@@ -57,4 +57,14 @@ Rcontrol & h::Send {BackSpace}
 return
 
 
+>^Space::Send {END}     ; space & n  - footer page
+!Space::                  ; Launchy: application launch, toTop: to top page of browser
+    Action := MultiPress("Launchy_inputMode, toTop_inputMode")
+return
+Launchy_inputMode:
+send !{Space}
+return
+toTop_inputMode:
+send, {HOME}
+return
 

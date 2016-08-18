@@ -10,6 +10,8 @@ RControl & y::Send ^c
 RControl & l::Send {Shift down}{LCtrl down}{vk54}{Shift Up}{LCtrl up}     ; +^t - restore tab in chrome
 RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
 
++p::Send, ^c^t^v{Enter}
+
 >^Space::Send {END}     ; space & n  - footer page
 !Space::                  ; Launchy: application launch, toTop: to top page of browser
     Action := MultiPress("Launchy, toTop")
@@ -74,6 +76,7 @@ MouseMove,  840,  540
 Return
 
 
+
 ;If WinActivate (ahk_exe ugol.exe)
 #IfWinActive ahk_exe ugol.exe
 k::
@@ -121,3 +124,19 @@ Return
 ;Return
 #IfWinActive
 
+
+#F11::
+Run, c:\Users\ADMIN\Favorites\Links\Google.url
+    Action := MultiPress("trans", 25000)
+return
+trans:
+    WinGetActiveTitle, ActiveWindow
+    title = Random Word - Google Chrome
+if InStr(ActiveWindow,title)
+{
+        Send, ^r
+        Sleep, 7000
+        Click 681, 400, 2
+     ;   MsgBox, You have won!
+}
+return

@@ -37,7 +37,8 @@
 ^m::Send {Home}+{End}^c{End}{Enter}^v ; Duplicate the current line, like R #
 ^i::Send ^{Left}^+{Right} ; Select the current word
 !i::Send {End}+{Home} ; Select the current string
-RControl & w::Send ^+{Left}{Space}{BS}   ;Delete backward word
+;RControl & w::Send ^+{Left}{Space}{BS}   ;Delete backward word
+RControl & w::Send ^{BS}   ;Delete backward word
 ^d::Send {Del}   ;Delete char
 RControl & /::Send ^z
 ^o::Send ^+{End}{BackSpace}   ; Delete forward current line

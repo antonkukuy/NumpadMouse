@@ -33,7 +33,6 @@ AppsKey::send {Space}
 <^i::send {Up}
 <^k::send {Down}
 RControl & n::send {Down}
-+k::send k
 <^j::send {Left}
 +j::send j
 <^l::send {Right}
@@ -43,6 +42,18 @@ RControl & n::send {Down}
 MouseClick, left,  1263,  738
 Sleep, 800
 MouseClick, left,  1236,  568
+Sleep, 800
+MouseClick, left,  1270,  667
+Sleep, 200
+MouseClick, left,  970,  667
+Sleep, 200
+MouseMove,  840,  540
+Return
+
++k::          ; Speed 2X for YouTube(middle position button)
+MouseClick, left,  1263,  738
+Sleep, 800
+MouseClick, left,  1226,  613
 Sleep, 800
 MouseClick, left,  1270,  667
 Sleep, 200

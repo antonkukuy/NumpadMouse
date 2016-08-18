@@ -84,14 +84,13 @@ Use the previous example when multiple behaviors are required for a given hotkey
 ;}}}
 
 
-MultiPress(actionList = "", delay = 500, msg = "")
+MultiPress(actionList = "", delay = 500)
 {
     Static pressCount := 0
 
     pressCount := ( ((A_PriorHotKey = "") || (A_ThisHotKey = A_PriorHotKey))
                     && (A_TimeSincePriorHotkey < delay) ) ? (pressCount + 1) : (1)
 
-    messageKey := msg
     if (actionList = "")  ;this option flags to just return count to caller
         Return pressCount
 

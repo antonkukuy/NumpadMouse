@@ -125,6 +125,7 @@ GroupAdd MouseGroup
 ;GroupAdd MouseGroup, ahk_exe acad.exe
 ;GroupAdd MouseGroup, ahk_exe chrome.exe
 GroupAdd NotEmacsGroup, ahk_exe mintty.exe
+GroupAdd NotEmacsGroup, ahk_exe gvim.exe
 ;GroupAdd MouseGroup, ahk_exe sublime_text.exe
 ;GroupAdd AllWindons
 

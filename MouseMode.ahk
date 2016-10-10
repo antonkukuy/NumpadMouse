@@ -88,6 +88,7 @@ MouseWheelMaxSpeed = 1
 
 MouseRotationAngle = 0
 
+CoordMode, Mouse, Screen  ; Place cursor at absolute screen coordinates
 
 ;END OF CONFIG SECTION
 
@@ -126,6 +127,7 @@ GroupAdd MouseGroup
 ;GroupAdd MouseGroup, ahk_exe chrome.exe
 GroupAdd NotEmacsGroup, ahk_exe mintty.exe
 GroupAdd NotEmacsGroup, ahk_exe gvim.exe
+GroupAdd ExcludeGroup, ahk_exe VirtualBox.exe
 ;GroupAdd MouseGroup, ahk_exe sublime_text.exe
 ;GroupAdd AllWindons
 
@@ -946,7 +948,7 @@ Return
 ;}}}
 
 ; MOUSE MODE ;{{{
-#If WInActive("ahk_group MouseGroup") && (MouseMode="Mouse")
+#If WInActive("ahk_group MouseGroup") && !WInActive("ahk_group ExcludeGroup") && (MouseMode="Mouse")
 
 ;+a::MsgBox % "MouseGroup"
 #Include, Add2MouseMode.ahk
@@ -955,7 +957,7 @@ Return
 ;}}} Mouse
 
 ; INTUP MODE ;{{{
-#If WInActive("ahk_group MouseGroup") && !WInActive("ahk_group NotEmacsGroup") && (MouseMode="Arrows")
+#If WInActive("ahk_group MouseGroup") && !WInActive("ahk_group ExcludeGroup") && !WInActive("ahk_group NotEmacsGroup") && (MouseMode="Arrows")
 
 ;+a::MsgBox % "EmacsGroup"
 #Include, LikeEmacsKeys.ahk

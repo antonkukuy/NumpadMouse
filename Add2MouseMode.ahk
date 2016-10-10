@@ -17,6 +17,8 @@ RControl & /::Send {LCtrl down}{vk57}{LCtrl up}     ; ^w  - close tab
     Action := MultiPress("Launchy, toTop")
 return
 Launchy:
+MouseMove, 682, 380
+Sleep 100
 send !{Space}
 return
 toTop:
@@ -137,6 +139,7 @@ Return
 
 
 #F11::
+#F3::
 Run, c:\Users\ADMIN\Favorites\Links\Google.url
     Action := MultiPress("trans", 25000)
 return

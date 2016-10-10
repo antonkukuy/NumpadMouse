@@ -63,6 +63,8 @@ return
     Action := MultiPress("Launchy_inputMode, toTop_inputMode")
 return
 Launchy_inputMode:
+MouseMove, 682, 380
+Sleep 100
 send !{Space}
 return
 toTop_inputMode:
